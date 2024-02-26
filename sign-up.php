@@ -36,7 +36,7 @@
         }
         h1 {
             font-size: 2rem;
-            color: black;
+            color: bisque;
             margin-top: 1.2rem;
             margin-bottom: 1.2rem;
             font-family: Arial;
@@ -50,7 +50,7 @@
             border-radius: 20px;
             background: white;
         }
-        button {
+        #button {
             font-size: 1rem;
             margin-top: 1.8rem;
             padding: 10px 0;
@@ -60,12 +60,13 @@
             color: white;
             cursor: pointer;
             background: rgb(17, 107, 143);
+            border-radius: 2px;
 
         }
-        button:hover {
+        #button:hover {
             background: rgba(17, 107, 143, 0.877);
         }
-        input:focus {
+        #input:focus {
             border: 1px solid white;
         }
         .terms {
@@ -100,28 +101,60 @@
             color: rgb(17, 107, 143);
             text-decoration: none;
         }
+        label {
+            margin-bottom: 7px;
+        }
+        
 
     </style>
 </head>
 <body>
+    <?php
+    /* include("config.php");
+    if(isset($_POST['submit'])){
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $verify_query = mysqli_query($con, "SELECT Email FROM users WHERE Email = '$email'");
+        if (mysqli_num_rows($verify_query) !=0) {
+            echo "<div class = 'message'>
+                      <p>This email is used, Try another one please!</p>
+                  <div> <br>";
+            echo "<a href = 'javascript:self.history.back()'><button class = 'btn'>Go back</button>";
+        }
+        else {
+            mysqli_query($con, "INSERT INTO users (Firstname, Lastname, Username, Email, Password) VALUES ('$firstname', '$lastname','$username','$email', '$password')") or die ("Error occourd");
+            echo "<div class = 'message'>
+                      <p>Registration was succesfull</p>
+                  <div> <br>";
+            echo "<a href = 'log-in.html'><button class = 'btn'>log in now</button>";
+        };
+
+    }*/
+    ?>
+    
     <div class="container">
         <h1>sign-up</h1>
-        <form action="">
-            <input type="text" placeholder="First name">
-            <input type="text" placeholder="Last name"> 
-            <input type="text" placeholder="username">
-            <input type="password" placeholder="password">
-            <input type="password" placeholder="re-Enter"><br>
+        <form action="config.php" method="post">
+            <input type="text" placeholder="First name" name="firstname">
+            <input type="text" placeholder="Last name" name="lastname"> 
+            <input type="text" placeholder="username" name="username">
+            <input type="email" placeholder="email" name="email">
+            <input type="password" placeholder="password" name="password"><br>
             
+        
+            <div class="terms">
+                <input type="checkbox" id="checkbox">
+                <label for="checkbox">I agree to these <a href="">terms & condition</a></label>
+            </div>
+            <div>
+                <input type="submit" name="submit" value="Sign up" id="button">
+                <div class="member"> Already a member? <a href="log-in.html">Log in</a></div>
+                </div>
         </form>
-        <div class="terms">
-            <input type="checkbox" id="checkbox">
-            <label for="checkbox">I agree to these <a href="">terms & condition</a></label>
-        </div>
-        <div>
-            <button>Sign Up</button>
-            <div class="member">Already a member? <a href="log-in.html">Log in</a></div>
-        </div>
 
     </div>
 
