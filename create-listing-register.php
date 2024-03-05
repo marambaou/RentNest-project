@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     if($_SERVER['REQUEST_METHOD']=='POST'){
         include 'config.php';
         $firstname = $_POST['firstname'];
@@ -6,15 +7,26 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
     
-     
-    $sql = "insert into `house-owners`(FirstName,LastName,Email,Password) values('$firstname','$lastname','$email','$password')";
-    $result = mysqli_query($con, $sql);
-    if($result){
-    header("Location: listing-login.php");
-    }else {
-    die(mysqli_error($con));
+     $check_emai_query = "SELECT Email FROM `house-owners` WHERE Email = '$email' LIMIT 1";
+     $check_emai_query_run = mysqli_query($con, $check_emai_query);
 
-    }
+     if(mysqli_num_rows($check_emai_query_run) > 0){
+
+        $error_message = "Email Already Exist";
+        //header("Location: create-listing-register.php");
+
+     }else{
+        $sql = "insert into `house-owners`(FirstName,LastName,Email,Password) values('$firstname','$lastname','$email','$password')";
+        $result = mysqli_query($con, $sql);
+        if($result){
+        header("Location: listing-login.php");
+        }else {
+        die(mysqli_error($con));
+    
+        }
+
+     }
+   
  }
 ?>
 <!DOCTYPE html>
@@ -110,7 +122,7 @@
             border: 1px solid white;
         }
         .terms {
-            margin-top: 0.2rem;
+            margin-top: 18px;
 
         }
         .terms input{
@@ -118,6 +130,7 @@
             width: 1em;
             vertical-align: middle;
             cursor: pointer;
+            margin-top: 7px;
 
 
         }
@@ -143,6 +156,12 @@
         }
         label {
             margin-bottom: 7px;
+        }
+        .error {
+            color: red;
+            margin-right: 40px;
+            position: absolute;
+
         }
         footer {
     background: linear-gradient(to right , #00093c, #2d0b00);
@@ -322,6 +341,11 @@ hr {
             <input type="text" placeholder="Last name" name="lastname"> 
             <input type="email" placeholder="email" name="email">
             <input type="password" placeholder="password" name="password"><br>
+            <?php
+            if(isset($error_message)){
+                echo '<div class = "error">' .$error_message. '</div>';
+            }
+            ?>
             
         
             <div class="terms">
