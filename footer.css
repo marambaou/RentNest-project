@@ -41,7 +41,7 @@ footer {
     text-decoration: none;
     color: #ffff;
 }
-form {
+#foorm {
     padding-bottom: 15px;
     display: flex;
     align-items: center;
@@ -50,11 +50,11 @@ form {
     margin-bottom: 50px;
 
 }
-form .far {
+#foorm .far {
     font-size: 18px;
     margin-right: 10px;
 }
-form input {
+#foorm input {
     width: 100%;
     background: transparent;
     color: #ccc;
@@ -63,18 +63,18 @@ form input {
 
 
 }
-form button {
+#foorm button {
     background: transparent;
     border: 0;
     outline: none;
     cursor: pointer;
 }
-form button  .fa-solid {
+#foorm button  .fa-solid {
     font-size: 16px;
     color: white;
 
 }
-form .fa-regular {
+#foorm .fa-regular {
     margin-right: 5px;
 }
 .social-icon .fa-brands{

@@ -1,0 +1,52 @@
+
+h1 {
+    color: red;
+}
+.container {
+    width: 80%;
+    margin: 80px auto;
+}
+.title {
+    text-align: center;
+    font-size: 4vmin;
+    color: rgb(73, 73, 126);
+}
+.line {
+    text-align: center;
+    justify-content: center;
+    color: black;
+    font-size: medium;
+
+
+}
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 49px;
+}
+img {
+    width: 350px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 300px;
+
+}
+.pic-btn {
+    border: 1px solid rgb(82, 82, 184);
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 10px;
+    position: absolute;
+    background-color: rgb(104, 104, 241);
+    color: white;
+}
+.pic-btn:hover {
+    background-color: blue;
+}
+#show {
+    text-align: right;
+    border: 1px solid burlywood;
+    text-decoration: none;
+}
