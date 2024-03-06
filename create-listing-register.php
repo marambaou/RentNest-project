@@ -337,10 +337,10 @@ hr {
     <div class="container">
         <h1>sign-up</h1>
         <form action="create-listing-register.php" method="post" id="form">
-            <input type="text" placeholder="First name" name="firstname">
-            <input type="text" placeholder="Last name" name="lastname"> 
+            <input type="text" placeholder="First name" name="firstname" required>
+            <input type="text" placeholder="Last name" name="lastname" required> 
             <input type="email" placeholder="email" name="email">
-            <input type="password" placeholder="password" name="password"><br>
+            <input type="password" placeholder="password" name="password" required><br>
             <?php
             if(isset($error_message)){
                 echo '<div class = "error">' .$error_message. '</div>';
