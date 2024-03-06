@@ -1,31 +1,69 @@
 <?php 
     session_start();
-    if($_SERVER['REQUEST_METHOD']=='POST'){
-        include 'config.php';
+    include 'config.php';
+
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\SMTP;
+        use PHPMailer\PHPMailer\Exception;
+        
+        
+        require 'vendor/autoload.php';
+    function sendemail_verify($firstname,$email,$verify){
+
+        $mail = new PHPMailer(true);    
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                    
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'marambasunga@gmail.com';                     
+        $mail->Password   = 'qccv phzy fxou bmha';                               
+        $mail->SMTPSecure = 'tls';           
+        $mail->Port       = 587;  
+
+        $mail->setFrom('marambasunga@gmail.com', $firstname);
+        $mail->addAddress($email); // Add a recipient
+
+        // Content
+        $mail->isHTML(true); // Set email format to HTML
+        $mail->Subject = 'Email Verification from RentNest';
+
+
+        $mail->Body = 'Dear ' . $firstname . ',<br><br><h5>You have registered with RentNest The best house locatore<h5><br><br>Please click the following link to verify your email: <a href="http://localhost/rentnest%20project/verify-email.php?token= ' . $verify . '">Verify Email</a>';
+
+        $mail->send();
+        echo 'Verification email sent successfully!';
+
+
+    }
+    if(isset($_POST['submit'])){
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $hashed = password_hash($password, PASSWORD_BCRYPT);
+        $verify = md5(rand());
+        sendemail_verify("$firstname","$email", "$verify");
     
-     $check_emai_query = "SELECT Email FROM `house-owners` WHERE Email = '$email' LIMIT 1";
-     $check_emai_query_run = mysqli_query($con, $check_emai_query);
+    //  $check_emai_query = "SELECT Email FROM `house-owners` WHERE Email = '$email' LIMIT 1";
+    //  $check_emai_query_run = mysqli_query($con, $check_emai_query);
 
-     if(mysqli_num_rows($check_emai_query_run) > 0){
+    //  if(mysqli_num_rows($check_emai_query_run) > 0){
 
-        $error_message = "Email Already Exist";
-        //header("Location: create-listing-register.php");
+    //     $error_message = "Email Already Exist";
+    //     //header("Location: create-listing-register.php");
 
-     }else{
-        $sql = "insert into `house-owners`(FirstName,LastName,Email,Password) values('$firstname','$lastname','$email','$password')";
-        $result = mysqli_query($con, $sql);
-        if($result){
-        header("Location: listing-login.php");
-        }else {
-        die(mysqli_error($con));
+    //  }else{
+    //     $sql = "insert into `house-owners`(FirstName,LastName,Email,Password,verify_token) values('$firstname','$lastname','$email','$hashed', '$verify')";
+    //     $result = mysqli_query($con, $sql);
+    //     if($result){
+    //     sendemail_verify("$firstname","$email", "$verify");
+    //     $_SESSION['status'] = "Registration successull verify your email address";
+    //     header("Location: listing-login.php");
+    //     }else {
+    //     die(mysqli_error($con));
     
-        }
+    //     }
 
-     }
+    //  }
    
  }
 ?>
