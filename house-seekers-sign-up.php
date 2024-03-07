@@ -332,7 +332,7 @@ hr {
             </div>
             <div>
                 <input type="submit" name="submit" value="Sign up" id="button">
-                <div class="member"> Already a member? <a href="log-in.php">Log in</a></div>
+                <div class="member"> Already a member? <a href="house-seeker-log-in.php">Log in</a></div>
                 </div>
         </form>
 

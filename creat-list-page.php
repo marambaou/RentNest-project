@@ -127,6 +127,11 @@
             font-family: Arial;
             background-color: rgb(172, 98, 98);
         }
+        .error{
+            color: green;
+            margin-top: 15px;
+            font-weight: bold;
+        }
         footer {
     background: linear-gradient(to right , #00093c, #2d0b00);
     width: 100%;
@@ -334,7 +339,7 @@ hr {
             $con->query($sql);
         }
 
-        echo "New record created successfully";
+        $error_message = "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
@@ -362,6 +367,11 @@ hr {
             <label for="image">Image:</label>
             <input type="file" id="image" name="image" accept="image/*"><br>
             <input type="submit" value="Submit">
+
+            <?php if(isset($error_message)){
+                echo '<div class = "error">' .$error_message. '</div>';
+            }
+            ?>
         </form>
     </div>
     <footer class="footer">

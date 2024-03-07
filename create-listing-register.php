@@ -27,10 +27,10 @@
         $mail->Subject = 'Email Verification from RentNest';
 
 
-        $mail->Body = 'Dear ' . $firstname . ',<br><br><h5>You have registered with RentNest The best house locatore<h5><br><br>Please click the following link to verify your email: <a href="http://localhost/rentnest%20project/verify-email.php?token= ' . $verify . '">Verify Email</a>';
+        $mail->Body = 'Dear ' . $firstname . ',<br><br><h5>You have registered with RentNest The best house locator<h5><br><br>Please click the following link to verify your email: <a href="http://localhost/rentnest%20project/verify-email.php?token='.$verify.'">Verify Email</a>';
 
         $mail->send();
-        echo 'Verification email sent successfully!';
+       // echo 'Verification email sent successfully!';
 
 
     }
@@ -39,31 +39,31 @@
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $hashed = password_hash($password, PASSWORD_BCRYPT);
         $verify = md5(rand());
+        
+    
+     $check_emai_query = "SELECT Email FROM `house-owners` WHERE Email = '$email' LIMIT 1";
+     $check_emai_query_run = mysqli_query($con, $check_emai_query);
+
+     if(mysqli_num_rows($check_emai_query_run) > 0){
+
+        $error_message = "Email Already Exist";
+        //header("Location: create-listing-register.php");
+
+     }else{
+        $sql = "insert into `house-owners`(FirstName,LastName,Email,Password,verify_token) values('$firstname','$lastname','$email','$password', '$verify')";
+        $result = mysqli_query($con, $sql);
+        if($result){
         sendemail_verify("$firstname","$email", "$verify");
+        $_SESSION['status'] = "Registration successull verify your email address";
+        //header("Location: create-listing-register.php");
+        }else {
+         $_SESSION['status'] = "Registration Failed";
+         //header("Location: create-listing-register.php");
     
-    //  $check_emai_query = "SELECT Email FROM `house-owners` WHERE Email = '$email' LIMIT 1";
-    //  $check_emai_query_run = mysqli_query($con, $check_emai_query);
+        }
 
-    //  if(mysqli_num_rows($check_emai_query_run) > 0){
-
-    //     $error_message = "Email Already Exist";
-    //     //header("Location: create-listing-register.php");
-
-    //  }else{
-    //     $sql = "insert into `house-owners`(FirstName,LastName,Email,Password,verify_token) values('$firstname','$lastname','$email','$hashed', '$verify')";
-    //     $result = mysqli_query($con, $sql);
-    //     if($result){
-    //     sendemail_verify("$firstname","$email", "$verify");
-    //     $_SESSION['status'] = "Registration successull verify your email address";
-    //     header("Location: listing-login.php");
-    //     }else {
-    //     die(mysqli_error($con));
-    
-    //     }
-
-    //  }
+     }
    
  }
 ?>
@@ -119,7 +119,7 @@
             margin: 100px auto 30px auto;
             border-radius: 10px;
             text-align: center;
-            background-color: rgba(67, 80, 95, 0.8);
+            background-color: rgba(67, 80, 95, 0.9);
             box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 
 
@@ -200,6 +200,12 @@
             margin-right: 40px;
             position: absolute;
 
+        }
+        h4{
+            color: green;
+            font-weight: bold;
+            font-size: 20px;
+            
         }
         footer {
     background: linear-gradient(to right , #00093c, #2d0b00);
@@ -373,6 +379,13 @@ hr {
     
     </div>
     <div class="container">
+        <?php
+        if(isset($_SESSION['status'])){
+            echo "<h4>" .$_SESSION['status']. "</h4>";
+            unset($_SESSION['status']);
+        }
+
+        ?>
         <h1>sign-up</h1>
         <form action="create-listing-register.php" method="post" id="form">
             <input type="text" placeholder="First name" name="firstname" required>

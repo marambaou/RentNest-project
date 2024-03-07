@@ -1,4 +1,5 @@
 <?php
+    session_start();
     
     if($_SERVER['REQUEST_METHOD']=='POST'){
         include 'config.php';
@@ -13,7 +14,7 @@
      if($num>0){
         header("Location: creat-list-page.php");
      }else {
-        echo "please check username/password";
+        $error_message = "Email/Password is incorrect";
      }
    }else {
     die(mysqli_error($con));
@@ -129,6 +130,15 @@
         .not-member a {
             color: rgb(17, 107, 143);
             text-decoration: none;
+        }
+        .alert-success{
+            color: green;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
         }
         footer {
     background: linear-gradient(to right , #00093c, #2d0b00);
@@ -301,10 +311,27 @@ hr {
     
     </div>
     <div class="wraped">
+        <?php
+
+        if(isset($_SESSION['status'])){
+            ?>
+            <div class="alert alert-success">
+                <h5><?=$_SESSION['status']; ?></h5>
+            </div>
+            <?php
+            unset($_SESSION['status']);
+        }
+
+        ?>
         <h1>LOG - IN</h1>
             <form action="listing-login.php" method="post">
                 <input type="email" placeholder="Email" name="email" class="input1"><br>
                 <input type="password" placeholder="password" name="password" class="input1">
+
+               <?php if(isset($error_message)){
+                echo '<div class = "error">' .$error_message. '</div>';
+            }
+            ?>
             
             <div class="terms">
             <input type="checkbox">

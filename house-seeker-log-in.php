@@ -13,7 +13,7 @@
      if($num>0){
         header("Location: listed-display.php");
      }else {
-        echo "please check username/password";
+        $error_message = "Please check Username/Password";
      }
    }else {
     die(mysqli_error($con));
@@ -129,6 +129,11 @@
         .not-member a {
             color: rgb(17, 107, 143);
             text-decoration: none;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+            font-style: italic;
         }
         footer {
     background: linear-gradient(to right , #00093c, #2d0b00);
@@ -305,6 +310,11 @@ hr {
             <form action="house-seeker-log-in.php" method="post">
                 <input type="text" placeholder="Username" name="username" class="input1"><br>
                 <input type="password" placeholder="password" name="password" class="input1">
+
+                <?php if(isset($error_message)){
+                echo '<div class = "error">' .$error_message. '</div>';
+            }
+            ?>
             
             <div class="terms">
             <input type="checkbox">
