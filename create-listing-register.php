@@ -37,12 +37,13 @@
     if(isset($_POST['submit'])){
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
+        $phone = $_POST['phone'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $verify = md5(rand());
         
     
-     $check_emai_query = "SELECT Email FROM `house-owners` WHERE Email = '$email' LIMIT 1";
+     $check_emai_query = "SELECT Email FROM house_owners WHERE Email = '$email' LIMIT 1";
      $check_emai_query_run = mysqli_query($con, $check_emai_query);
 
      if(mysqli_num_rows($check_emai_query_run) > 0){
@@ -51,7 +52,7 @@
         //header("Location: create-listing-register.php");
 
      }else{
-        $sql = "insert into `house-owners`(FirstName,LastName,Email,Password,verify_token) values('$firstname','$lastname','$email','$password', '$verify')";
+        $sql = "insert into house_owners(FirstName,LastName,PhoneNumber,Email,Password,verify_token) values('$firstname','$lastname','$phone','$email','$password', '$verify')";
         $result = mysqli_query($con, $sql);
         if($result){
         sendemail_verify("$firstname","$email", "$verify");
@@ -389,7 +390,8 @@ hr {
         <h1>sign-up</h1>
         <form action="create-listing-register.php" method="post" id="form">
             <input type="text" placeholder="First name" name="firstname" required>
-            <input type="text" placeholder="Last name" name="lastname" required> 
+            <input type="text" placeholder="Last name" name="lastname" required>
+            <input type="number" placeholder="Phone Number" name="phone" required>  
             <input type="email" placeholder="email" name="email">
             <input type="password" placeholder="password" name="password" required><br>
             <?php

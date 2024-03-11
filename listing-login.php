@@ -7,7 +7,7 @@
         $password= $_POST['password'];
     
     
-    $sql = "select * from `house-owners` where Email = '$email' and Password = '$password'";
+    $sql = "select * from house_owners where Email = '$email' and Password = '$password'";
    $result = mysqli_query($con, $sql);
    if($result){
     $num = mysqli_num_rows($result);
