@@ -1,3 +1,50 @@
+<?php
+      session_start(); 
+      include 'config.php';
+     
+    $user_id = $_SESSION['user_id'];
+    $query = "SELECT * FROM house_owners WHERE id = $user_id";
+    $result = mysqli_query($con, $query);
+    $user_data = mysqli_fetch_assoc($result);
+    
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+
+        $location = $_POST['location'];
+        $rent = $_POST['rent'];
+        $category = $_POST['category'];
+
+    
+    $sql = "INSERT INTO houses (owners_id, location, rent, category) VALUES ('$user_id','$location', '$rent', '$category')";
+    if ($con->query($sql) === TRUE) {
+        
+        $house_id = $con->insert_id;
+
+        
+        $image_name = $_FILES['image']['name'];
+        $image_tmp = $_FILES['image']['tmp_name'];
+        $image_type = $_FILES['image']['type'];
+
+    
+        if ($image_type == 'image/jpeg' || $image_type == 'image/png') {
+            
+            $upload_dir = 'uploads/';
+            $image_url = $upload_dir . $image_name;
+            move_uploaded_file($image_tmp, $image_url);
+
+            
+            $sql = "INSERT INTO house_images (house_id, image_url) VALUES ('$house_id', '$image_url')";
+            $con->query($sql);
+        }
+
+        $error_message = "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $con->error;
+    }
+
+
+    $con->close();
+}
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -308,46 +355,7 @@ hr {
             <li><a href="">User Review</a></li>
         </ul>
     </div>
-        <?php
-    
-    if($_SERVER['REQUEST_METHOD']=='POST'){
-        include 'config.php';
-        $location = $_POST['location'];
-        $rent = $_POST['rent'];
-        $category = $_POST['category'];
-
-    
-    $sql = "INSERT INTO houses (location, rent, category) VALUES ('$location', '$rent', '$category')";
-    if ($con->query($sql) === TRUE) {
-        
-        $house_id = $con->insert_id;
-
-        
-        $image_name = $_FILES['image']['name'];
-        $image_tmp = $_FILES['image']['tmp_name'];
-        $image_type = $_FILES['image']['type'];
-
-    
-        if ($image_type == 'image/jpeg' || $image_type == 'image/png') {
-            
-            $upload_dir = 'uploads/';
-            $image_url = $upload_dir . $image_name;
-            move_uploaded_file($image_tmp, $image_url);
-
-            
-            $sql = "INSERT INTO house_images (house_id, image_url) VALUES ('$house_id', '$image_url')";
-            $con->query($sql);
-        }
-
-        $error_message = "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $con->error;
-    }
-
-
-    $con->close();
-}
-    ?>
+       
    
     <div class="container">
         <h1>House Listing</h1>

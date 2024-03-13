@@ -1,27 +1,53 @@
 <?php
-    
-    if($_SERVER['REQUEST_METHOD']=='POST'){
-        include 'config.php';
-        $username = $_POST['username'];
-        $password= $_POST['password'];
-    
-    
-    $sql = "select * from `house_seekers` where Username = '$username' and Password = '$password'";
-   $result = mysqli_query($con, $sql);
-   if($result){
-    $num = mysqli_num_rows($result);
-     if($num>0){
-        header("Location: listed-display.php");
-     }else {
-        $error_message = "Please check Username/Password";
-     }
-   }else {
-    die(mysqli_error($con));
+session_start();
 
-   }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include 'config.php';
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM house_seekers WHERE Username = '$username'";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        if ($password === $row['Password']) {
+            // Password is correct
+            $_SESSION['seekers_id'] = $row['Id']; // Store user ID in session
+           header("Location: listed-display.php");
+            exit;
+        } else {
+            $error_message = "Email/Password is incorrect";
+        }
+    } else {
+        die(mysqli_error($con));
+    }
 }
+?>
 
-    ?>
+<!-- // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//     include 'config.php';
+//     $username = $_POST['username'];
+//     $password = $_POST['password'];
+
+//     $sql = "SELECT * FROM `house_seekers` WHERE Username = '$username' AND Password = '$password'";
+//     $result = mysqli_query($con, $sql);
+
+//     if ($result) {
+//         $num = mysqli_num_rows($result);
+//         if ($num > 0) {
+//             $row = mysqli_fetch_assoc($result);
+//             $_SESSION['seekers_id'] = $row['id']; // Store user ID in session
+//             header("Location: listed-display.php");
+//             exit;
+//         } else {
+//             $error_message = "Please check Username/Password";
+//         }
+//     } else {
+//         die(mysqli_error($con));
+//     }
+// }
+?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

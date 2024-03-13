@@ -103,7 +103,7 @@
             
             </div> 
         </div><br><br><br>
-        <a href="listed-display.php" id="show">Show All</a>
+        <a href="house-seeker-log-in.php" id="show">Show All</a>
 
         <hr>
         <div class="about">

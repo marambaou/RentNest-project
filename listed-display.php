@@ -89,6 +89,8 @@ include('header.html');
         </div>
         <div class="row">
     <?php
+
+
     
     include 'config.php';
     if(isset($_POST['btn'])){
@@ -96,10 +98,10 @@ include('header.html');
         $location = $_POST['location'];
         $rent = $_POST['rent'];
 
-        $sql = "SELECT * FROM houses WHERE category = '$category' AND location = '$location' AND  rent <= $rent";
+        $sql = "SELECT * FROM houses WHERE category = '$category' AND location = '$location' AND  rent <= $rent AND book_status = '0'";
     }else {
 
-    $sql = "SELECT * FROM houses";
+    $sql = "SELECT * FROM houses WHERE book_status = '0'";
 }
     $result = $con->query($sql);
 
@@ -107,6 +109,7 @@ include('header.html');
         $count = 0;
         while($row = $result->fetch_assoc()) {
             if ($count % 3 == 0 && $count != 0) {
+
                 echo '</div><div class="row">';
             }
 
@@ -121,7 +124,7 @@ include('header.html');
             echo '<img src="' . $image_url . '" alt="">';
             echo '<h4>LOCATION: ' . $row['location'] . ' CATEGORY: ' . $row['category'] . '</h4>'; ' PRICE: Ksh.' . $row['rent'] . '</h4>';
             echo '<h4>PRICE: Ksh.' . $row['rent'] . '</h4>';
-            echo '<a href="" class="pic-btn">Book now</a>';
+            echo '<a href="booking.php?house_id='.$house_id.'" class="pic-btn">Book now</a>';
             echo '</div>';
 
             $count++;

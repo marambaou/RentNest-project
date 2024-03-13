@@ -1,28 +1,29 @@
 <?php
-    session_start();
-    
-    if($_SERVER['REQUEST_METHOD']=='POST'){
-        include 'config.php';
-        $email = $_POST['email'];
-        $password= $_POST['password'];
-    
-    
-    $sql = "select * from house_owners where Email = '$email' and Password = '$password'";
-   $result = mysqli_query($con, $sql);
-   if($result){
-    $num = mysqli_num_rows($result);
-     if($num>0){
-        header("Location: creat-list-page.php");
-     }else {
-        $error_message = "Email/Password is incorrect";
-     }
-   }else {
-    die(mysqli_error($con));
+session_start();
 
-   }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include 'config.php';
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM house_owners WHERE Email = '$email'";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        if ($password === $row['Password']) {
+            // Password is correct
+            $_SESSION['user_id'] = $row['id']; // Store user ID in session
+            header("Location: creat-list-page.php");
+            exit;
+        } else {
+            $error_message = "Email/Password is incorrect";
+        }
+    } else {
+        die(mysqli_error($con));
+    }
 }
+?>
 
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
