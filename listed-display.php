@@ -1,5 +1,6 @@
 <?php
 include('header.html');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +92,7 @@ include('header.html');
     <?php
 
 
-    
+   
     include 'config.php';
     if(isset($_POST['btn'])){
         $category = $_POST['category'];
@@ -99,6 +100,11 @@ include('header.html');
         $rent = $_POST['rent'];
 
         $sql = "SELECT * FROM houses WHERE category = '$category' AND location = '$location' AND  rent <= $rent AND book_status = '0'";
+            if (isset($_SESSION['seekers_id'])) {
+                $seekers_id = $_SESSION['seekers_id'];
+            $insert = "INSERT INTO search_history (seeker_id, category, location, rent) VALUES ('$seekers_id', '$category', '$location', '$rent')";
+            $output = $con->query($insert);
+            }
     }else {
 
     $sql = "SELECT * FROM houses WHERE book_status = '0'";
@@ -132,6 +138,7 @@ include('header.html');
     } else {
         echo "No result found";
     }
+
 
     $con->close();
     ?>

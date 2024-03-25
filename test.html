@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toggle Content Example</title>
+<style>
+  /* Styling for the tabs */
+  .tab {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  .tab:hover {
+    background-color: #ccc;
+  }
+  /* Styling for the content */
+  .content {
+    display: none;
+    margin-top: 20px;
+  }
+  .active {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<!-- Tab buttons -->
+<div class="tab" onclick="showContent('html')">HTML</div>
+<div class="tab" onclick="showContent('css')">CSS</div>
+<div class="tab" onclick="showContent('javascript')">JavaScript</div>
+
+<!-- Content -->
+<div id="htmlContent" class="content active">
+  <h2>HTML Content</h2>
+  <p>This is the HTML content.</p>
+</div>
+
+<div id="cssContent" class="content">
+  <h2>CSS Content</h2>
+  <p>This is the CSS content.</p>
+</div>
+
+<div id="javascriptContent" class="content">
+  <h2>JavaScript Content</h2>
+  <p>This is the JavaScript content.</p>
+</div>
+
+<script>
+// Function to show content when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+  showContent('html'); // Show HTML content by default
+});
+
+function showContent(contentName) {
+  // Hide all content
+  var contents = document.getElementsByClassName("content");
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].classList.remove("active"); // Remove active class from all contents
+    contents[i].style.display = "none";
+  }
+  
+  // Show the selected content
+  var selectedContent = document.getElementById(contentName + "Content");
+  selectedContent.classList.add("active"); // Add active class to selected content
+  selectedContent.style.display = "block";
+}
+</script>
+
+</body>
+</html>
