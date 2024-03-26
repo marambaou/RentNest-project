@@ -44,17 +44,17 @@
     }
 
 
-    $con->close();
+
 }
 // Assuming you have already established a database connection
 
 // Function to execute SQL queries and fetch results
 function execute_query($con, $query) {
-    $result = mysqli_query($con, $query);
-    if (!$result) {
+    $results = mysqli_query($con, $query);
+    if (!$results) {
         die("Query failed: " . mysqli_error($con));
     }
-    return $result;
+    return $results;
 }
 
 // Retrieve data for search history
@@ -229,6 +229,22 @@ $booking_rent_result = execute_query($con, $booking_rent_query);
             display: flex;
             justify-content: space-between;
         }
+        .download {
+            margin: 0 auto;
+            cursor: pointer;
+            background-color: greenyellow;
+            color: #000;
+            border-radius: 5px;
+            border: 1px solid green;
+            padding: 15px;
+            width: 19%;
+        }
+        .download a {
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+
+        }
         footer {
     background: linear-gradient(to right , #00093c, #2d0b00);
     width: 100%;
@@ -400,7 +416,7 @@ hr {
     </div>
     <div class="top-nav">
         <ul>
-            <div class="tab" onclick="showContent('report')">Weekly Report</div>
+            <div class="tab"  onclick=" showContent('report')">Weekly Report</a></a></div>
             <div class="tab" onclick="showContent('listing')">House Listing</div>
             <div class="tab" onclick="showContent('profile')">User Profile</div>
         
@@ -436,20 +452,20 @@ hr {
     <div id="reportContent" class="report content">
         <h1>Weekly Report</h1>
         <p class="head">Introduction</p>
-<p>Hello <?php echo $firstName . " " . $secondName ?>, this report shows how the bookings and searches have occurred in one week. RentNest presents this report to you as one of our esteemed users to help in future investment decision-making. The information below has not been tampered with in any way, so it is authentic and approved.</p>
-<p class="head">Background</p>
-<p>Since real estate is one of the best investment options across the planet, making decisions on which type of house to major in, your pricing criteria, and the choice of location is always a daunting matter to all investors. Therefore, the information in this report will help in this decision-making process.</p>
-<p class="head">Methodology</p>
-<p>The information above has been obtained from the analysis of our large database, tracking of activities on our RentNest website, and feedback that we have been receiving from our esteemed users. Analysis has been done on the information to ensure that the provided information is of high accuracy.</p>
+            <p>Hello <?php echo $firstName . " " . $secondName ?>, this report shows how the bookings and searches have occurred in one week. RentNest presents this report to you as one of our esteemed users to help in future investment decision-making. The information below has not been tampered with in any way, so it is authentic and approved.</p>
+            <p class="head">Background</p>
+            <p>Since real estate is one of the best investment options across the planet, making decisions on which type of house to major in, your pricing criteria, and the choice of location is always a daunting matter to all investors. Therefore, the information in this report will help in this decision-making process.</p>
+            <p class="head">Methodology</p>
+            <p>The information above has been obtained from the analysis of our large database, tracking of activities on our RentNest website, and feedback that we have been receiving from our esteemed users. Analysis has been done on the information to ensure that the provided information is of high accuracy.</p>
 <p class="head">Findings</p>
 <div class="analysis">
     <div class="search">
         <h4>From Search History</h4>
         <p>Most searched locations:</p>
         <ul>
-        <?php while ($row = mysqli_fetch_assoc($search_result)) { ?>
+                <?php while ($row = mysqli_fetch_assoc($search_result)) { ?>
                 <li><?php echo $row['location'] . ": " . $row['search_count'] . " searches"; ?></li>
-            <?php } ?>
+                <?php } ?>
         </ul>
         <p>Most searched property types:</p>
         <ul>
@@ -490,7 +506,9 @@ hr {
 
         
 
-        
+   <div class="download">
+    <a href="report-generation.php">Download Report<i class="fa-solid fa-download"></i></a>
+   </div>     
     </div>
     <div id="profileContent" class="profile content">
         welcom to the profile page
@@ -558,6 +576,8 @@ function showContent(contentName) {
   var selectedContent = document.getElementById(contentName + "Content");
   selectedContent.classList.add("active"); // Add active class to selected content
   selectedContent.style.display = "block";
+  
+
 }
 </script>
 </body>
