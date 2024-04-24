@@ -410,7 +410,7 @@ hr {
             <li><a href="">Home</a></li>
             <li><a href="">About Us</a></li>
             <li><a href="">Contact Us</a></li>
-            <li><a href="">Log Out</a></li>
+            <li><a href="opening-page.php">Log Out</a></li>
         </ul>
     
     </div>
@@ -511,7 +511,7 @@ hr {
    </div>     
     </div>
     <div id="profileContent" class="profile content">
-        welcom to the profile page
+        welcom back <?php echo $firstName . " " . $secondName ?> to the profile page
     </div>
     <footer class="footer">
         <div class="row2">

@@ -10,13 +10,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_query($con, $sql);
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        if ($password === $row['Password']) {
-            // Password is correct
-            $_SESSION['user_id'] = $row['id']; // Store user ID in session
-            header("Location: creat-list-page.php");
-            exit;
+        if ($row) {
+            if ($password === $row['Password']) {
+                // Password is correct
+                $_SESSION['user_id'] = $row['id']; // Store user ID in session
+                if ($row['subscribed']) {
+                    // User is subscribed, redirect to create listing page
+                    header("Location: creat-list-page.php");
+                    exit;
+                } else {
+                    // User is not subscribed, redirect to payment page
+                    header("Location: payment-gateway.php");
+                    exit;
+                }
+            } else {
+                $error_message = "Email/Password is incorrect";
+            }
         } else {
-            $error_message = "Email/Password is incorrect";
+            $error_message = "User not found";
         }
     } else {
         die(mysqli_error($con));

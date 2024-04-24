@@ -15,7 +15,7 @@
     $email = $_POST['email'];
     $password = $_POST['password'];*/
 
-    $con = new mysqli("localhost", "root", "" ,"registration");
+    $con = new mysqli("localhost", "root", "" ,"registration", "4306");
     if(!$con){
         die(mysqli_error($con));
     }

@@ -348,7 +348,7 @@ hr {
             </div>
             <button type="submit">LOG IN</button>
             <div class="not-member">
-                Don't have an account? <a href="Sign-up.php">Sign up</a>
+                Don't have an account? <a href="house-seekers-sign-up.php">Sign up</a>
             </div>
         </form>
         

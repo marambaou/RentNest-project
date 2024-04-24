@@ -323,7 +323,8 @@ hr {
             <input type="text" placeholder="Last name" name="lastname"> 
             <input type="text" placeholder="username" name="username">
             <input type="email" placeholder="email" name="email">
-            <input type="password" placeholder="password" name="password"><br>
+            <input type="password" placeholder="password " name="password" id="passwords"><br>
+            <input type="checkbox" onclick="myfunction()">show password <br>
             
         
             <div class="terms">
@@ -382,5 +383,15 @@ hr {
         <hr>
         <p class="copy-right">Rent Nest Africa ©  2024 - All Right reserverd</p>
     </footer>
+    <script>
+        function myfunction(){
+            let visibility = document.getElementById("passwords");
+            if(visibility === "pasword"){
+                visibility.type = "text";
+            }else {
+                visibility.type = "passwod";
+            }
+        }
+    </script>
 </body>
 </html>

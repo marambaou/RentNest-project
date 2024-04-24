@@ -18,6 +18,59 @@
         body {
             background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1));
         }
+        .media {
+    position: absolute;
+    right: 0;
+    z-index: 999;
+    justify-content: right;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8));
+    margin-right: 15px;
+    height: 80%;
+    width: 250px;
+    padding-left: 10px;
+    display: none;
+}
+.media li {
+    list-style: none;
+}
+.media li a {
+    text-decoration: none;
+    color: white;
+    line-height: 3;
+    font-weight: bold;
+    text-align: start;
+}
+.media li a:hover {
+    color: wheat;
+}
+
+.fa-xmark {
+    font-size: 28px;
+    color: white;
+    text-align: end;
+}
+.fa-xmark:hover {
+    cursor: pointer;
+    color: wheat;
+}
+@media all and (max-width: 1246px) {
+    .top-right li i {
+        display: block;
+    }
+    .links {
+        display: none;
+    }
+
+}
+@media all and (max-width: 712px) {
+    .top-right li i {
+        display: block;
+    }
+    .top-right {
+        display: none;
+    }
+   
+}
     </style>
 </head>
 <body>
@@ -34,9 +87,20 @@
             <ul class="top-right">
                 <li><a href="house-seekers-sign-up.php" id="search">Search House</a></li>
                 <li><a href="listing-login.php" id="list">Create Listing</a></li>
+                <li><i class="fa-solid fa-list" id="menu"></i></li>
             </ul>
+            
         
         </div>
+
+        <div class="media links" id="display">
+            <li><i class="fa-solid fa-xmark" id="xmark"></i></li>
+            <li><a href="" >Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Get Started</a></li>
+        </div>
+
         <div class="header-content">
             <h2>Finding You New <br>Home is simple.</h2>
             <p class="piri">Rent Nest if your go to destination for finding the perferct <br> rental home to suite your needs. With thousands of properties listed across the world. <br> Your comfortability is our first priority</p>
@@ -205,6 +269,19 @@
         <hr>
         <p class="copy-right">Rent Nest Africa ©  2024 - All Right reserverd</p>
     </footer>
-    <script src=""></script>
+    <script>
+
+        const menu = document.getElementById('menu');
+        const display = document.getElementById('display');
+        const mark = document.getElementById('xmark');
+        mark.addEventListener( 'click', function(){
+            display.style.display = 'none';
+        });
+
+        menu.addEventListener('click', function(){
+            display.style.display = 'block';
+        });
+
+    </script>
 </body>
 </html>
