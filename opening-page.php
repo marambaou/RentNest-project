@@ -53,6 +53,7 @@
     cursor: pointer;
     color: wheat;
 }
+
 @media all and (max-width: 1246px) {
     .top-right li i {
         display: block;
@@ -70,6 +71,66 @@
         display: none;
     }
    
+}
+@media (max-width: 950px) {
+    .about {
+      flex-direction: column; /* Display elements below each other */
+      align-items: center; /* Center elements horizontally */
+    }
+  
+    .image,
+    .image-text {
+      width: 100%; /* Set width to 100% to occupy full width of the container */
+      margin-bottom: 20px; /* Add some spacing between elements */
+    }
+  }
+  @media (max-width: 1024px) {
+  .our-work {
+    flex-direction: column; /* Display items vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .each-work {
+    width: 100%; /* Set width to 100% to occupy full width of the container */
+    margin-bottom: 20px; /* Add some spacing between items */
+  }
+}
+@media (max-width: 1024px) {
+  .row {
+    flex-direction: column; /* Display columns vertically */
+    align-items: center; /* Center columns horizontally */
+  }
+
+  .column {
+    flex: 0 0 100%; /* Set width to 100% to occupy full width of the container */
+    margin-bottom: 50px;
+    
+  }
+  img {
+    width: 450px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 300px;
+
+}
+
+}
+
+@media (max-width: 950px) {
+  .app {
+    width: 90%; /* Adjust width for smaller screens */
+    transform: translateX(10%); /* Adjust horizontal position */
+  }
+
+  .official {
+    flex-direction: row; /* Revert to row layout */
+    justify-content: center; /* Center items horizontally */
+
+  }
+
+  .play-store {
+    display: none;
+  }
 }
     </style>
 </head>
@@ -106,12 +167,12 @@
             <p class="piri">Rent Nest if your go to destination for finding the perferct <br> rental home to suite your needs. With thousands of properties listed across the world. <br> Your comfortability is our first priority</p>
             <input type="button" value="Get started" class="btn">
 
-            <div class="cont-search">
+            <!-- <div class="cont-search">
                 <input type="text" placeholder="Category">
                 <input type="text" placeholder="Location/ town/ County">
                 <input type="text" placeholder="Maximum Price">
                 <button class="btn-search"><i class="fa-solid fa-magnifying-glass-location"></i> Search</button>
-            </div>
+            </div> -->
 
         </div>
         
@@ -126,21 +187,21 @@
                 <img src="r-architecture-T6d96Qrb5MY-unsplash.jpg" alt="">
                 <h4>LOCATION: juja CATEGORY:4 Bedroom <br> PRICE: Ksh.40,000 </h4>
                 <p>This amenity is located in the vicnity of juja town, <br> whith maximum security measures in place. <br> Water is available 24/7. </p>
-                <a href="" class="pic-btn">Book now</a>
+                <a href="house-seeker-log-in.php" class="pic-btn">Book now</a>
             
             </div>
             <div class="column">
                 <img src="r-architecture-wot0Q5sg91E-unsplash.jpg" alt="">
                 <h4>LOCATION: kilimani CATEGORY:4 Bedroom <br> PRICE: Ksh.35,000 </h4>
                 <p>This amenity is located in the vicnity of kilimani town,<br>whith maximum security measures in place. <br>Water is available 24/7, Book now. </p>
-                <a href="" class="pic-btn">Book now</a>
+                <a href="house-seeker-log-in.php" class="pic-btn">Book now</a>
             
             </div>
             <div class="column">
                 <img src="outsite-co-R-LK3sqLiBw-unsplash.jpg" alt="">
                 <h4>LOCATION: juja CATEGORY:4 Bedroom <br> PRICE: Ksh.40,000 </h4>
                 <p>This amenity is located in the vicnity of juja town, <br> whith maximum security measures in place. <br> Water is available 24/7. </p>
-                <a href="" class="pic-btn">Book now</a>
+                <a href="house-seeker-log-in.php" class="pic-btn">Book now</a>
             
             </div>
         </div>
@@ -149,21 +210,21 @@
                 <img src="r-architecture-Eh_It1hg4Hs-unsplash.jpg" alt="">
                 <h4>LOCATION: juja CATEGORY:4 Bedroom <br> PRICE: Ksh.40,000 </h4>
                 <p>This amenity is located in the vicnity of juja town, <br> whith maximum security measures in place. <br> Water is available 24/7. </p>
-                <a href="" class="pic-btn">Book now</a>
+                <a href="house-seeker-log-in.php" class="pic-btn">Book now</a>
             
             </div>
             <div class="column">
                 <img src="jason-briscoe-UV81E0oXXWQ-unsplash.jpg" alt="">
                 <h4>LOCATION: kilimani CATEGORY:4 Bedroom <br> PRICE: Ksh.35,000 </h4>
                 <p>This amenity is located in the vicnity of kilimani town,<br>whith maximum security measures in place. <br>Water is available 24/7, Book now. </p>
-                <a href="" class="pic-btn">Book now</a>
+                <a href="house-seeker-log-in.php" class="pic-btn">Book now</a>
             
             </div>
             <div class="column">
                 <img src="jason-briscoe-AQl-J19ocWE-unsplash.jpg" alt="">
                 <h4>LOCATION: juja CATEGORY:4 Bedroom <br> PRICE: Ksh.40,000 </h4>
                 <p>This amenity is located in the vicnity of juja town, <br> whith maximum security measures in place. <br> Water is available 24/7. </p>
-                <a href="" class="pic-btn">Book now</a>
+                <a href="house-seeker-log-in.php" class="pic-btn">Book now</a>
             
             </div> 
         </div><br><br><br>

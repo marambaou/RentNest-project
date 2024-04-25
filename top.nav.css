@@ -164,9 +164,7 @@ h2 {
     width: 200px;
     padding: 15px;
     font-size: medium;
-    
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-radius: 15px;
     color: black;
     font-weight: bold;
     border: none;

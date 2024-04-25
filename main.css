@@ -61,6 +61,7 @@ img {
     height: 300px;
 
 }
+
 .pic-btn {
     border: 1px solid rgb(82, 82, 184);
     text-decoration: none;
@@ -80,6 +81,18 @@ img {
     justify-content: space-between;
 
 }
+@media (max-width: 800px) {
+    .about {
+      flex-direction: column; /* Display elements below each other */
+      align-items: center; /* Center elements horizontally */
+    }
+  
+    .image,
+    .image-text {
+      width: 100%; /* Set width to 100% to occupy full width of the container */
+      margin-bottom: 20px; /* Add some spacing between elements */
+    }
+  }
 .phot {
     width: 650px;
     height: 450px;
